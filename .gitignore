@@ -1,0 +1,21 @@
+# Backend (Maven/Java)
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# Frontend (Node/Vite)
+frontend/node_modules/
+frontend/dist/
+
+# Env files — never commit real secrets
+**/.env
+**/.env.*
+!**/.env.*.example
+**/application-local.properties
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
