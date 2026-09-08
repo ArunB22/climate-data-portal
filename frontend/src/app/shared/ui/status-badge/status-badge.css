@@ -1,0 +1,30 @@
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px 3px 7px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.status svg {
+  width: 12px;
+  height: 12px;
+}
+.status.ok {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+.status.pending {
+  background: var(--pending-soft);
+  color: var(--pending);
+  border-color: var(--pending);
+  border-style: dashed;
+}
+.status.bad {
+  background: var(--bad-soft);
+  color: var(--bad);
+}
