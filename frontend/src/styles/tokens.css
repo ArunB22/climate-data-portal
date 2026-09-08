@@ -1,0 +1,220 @@
+/*
+ * Design tokens — the ONE shared/common stylesheet in the app.
+ * Every component's own CSS references these custom properties instead of
+ * hardcoding colors/fonts, so the palette or theme can change in one place.
+ * Component-specific look-and-feel lives in each component's own `styles:`
+ * block, not here — this file only holds what's genuinely cross-cutting.
+ *
+ * Values sourced from the "Vasudha Data Atlas" design direction.
+ */
+
+:root {
+  --paper: #edf0ea;
+  --surface: #fafbf8;
+  --surface-2: #f1f4ee;
+  --surface-3: #e4e9e1;
+  --line: #cbd3c8;
+  --line-strong: #9aa79a;
+  --ink: #14261c;
+  --ink-2: #3e4f45;
+  --muted: #6b7a70;
+
+  --brand: #1e5a3c;
+  --brand-hover: #174a31;
+  --brand-soft: #dce9df;
+  --on-brand: #f4f8f3;
+
+  --climate: #1f7fa8;
+  --energy: #b8711a;
+  --power: #7f45a8;
+  --climate-soft: #dcebf2;
+  --energy-soft: #f3e6d4;
+  --power-soft: #eae0f1;
+
+  --seq-1: #d6e6da;
+  --seq-2: #9fc5aa;
+  --seq-3: #5e9a72;
+  --seq-4: #2f6e48;
+  --seq-5: #17452b;
+
+  --ok: #2e7d4f;
+  --ok-soft: #dcefe2;
+  --pending: #5f6e78;
+  --pending-soft: #e7ecef;
+  --bad: #b23a3a;
+  --bad-soft: #f4dede;
+
+  --scrim: rgba(20, 38, 28, 0.55);
+  --shadow: 0 1px 2px rgba(20, 38, 28, 0.06), 0 8px 24px rgba(20, 38, 28, 0.1);
+  --shadow-lg: 0 2px 4px rgba(20, 38, 28, 0.08), 0 24px 64px rgba(20, 38, 28, 0.22);
+  --ring: 0 0 0 3px rgba(30, 90, 60, 0.25);
+
+  --panel: #14261c;
+  --panel-ink: #e4eae2;
+  --panel-line: rgba(228, 234, 226, 0.16);
+
+  --radius: 3px;
+  --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper: #0f1512;
+    --surface: #171f1a;
+    --surface-2: #1d2620;
+    --surface-3: #263129;
+    --line: #2b3730;
+    --line-strong: #4a5a50;
+    --ink: #e4eae2;
+    --ink-2: #b5c0b7;
+    --muted: #8a978d;
+
+    --brand: #6db58a;
+    --brand-hover: #85c79f;
+    --brand-soft: #1e3327;
+    --on-brand: #0f1512;
+
+    --climate: #3f9cc6;
+    --energy: #c48228;
+    --power: #a97fd0;
+    --climate-soft: #15303c;
+    --energy-soft: #3a2a12;
+    --power-soft: #2e2240;
+
+    --seq-1: #1e3327;
+    --seq-2: #2b5a3c;
+    --seq-3: #3f8258;
+    --seq-4: #6db58a;
+    --seq-5: #a9dcbe;
+
+    --ok: #5fbf85;
+    --ok-soft: #1b3326;
+    --pending: #98a6b0;
+    --pending-soft: #222c31;
+    --bad: #e07070;
+    --bad-soft: #3a1f1f;
+
+    --scrim: rgba(5, 10, 7, 0.68);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.4), 0 24px 64px rgba(0, 0, 0, 0.6);
+    --ring: 0 0 0 3px rgba(109, 181, 138, 0.3);
+
+    --panel: #0b110e;
+    --panel-ink: #e4eae2;
+    --panel-line: rgba(228, 234, 226, 0.14);
+
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --paper: #0f1512;
+  --surface: #171f1a;
+  --surface-2: #1d2620;
+  --surface-3: #263129;
+  --line: #2b3730;
+  --line-strong: #4a5a50;
+  --ink: #e4eae2;
+  --ink-2: #b5c0b7;
+  --muted: #8a978d;
+
+  --brand: #6db58a;
+  --brand-hover: #85c79f;
+  --brand-soft: #1e3327;
+  --on-brand: #0f1512;
+
+  --climate: #3f9cc6;
+  --energy: #c48228;
+  --power: #a97fd0;
+  --climate-soft: #15303c;
+  --energy-soft: #3a2a12;
+  --power-soft: #2e2240;
+
+  --seq-1: #1e3327;
+  --seq-2: #2b5a3c;
+  --seq-3: #3f8258;
+  --seq-4: #6db58a;
+  --seq-5: #a9dcbe;
+
+  --ok: #5fbf85;
+  --ok-soft: #1b3326;
+  --pending: #98a6b0;
+  --pending-soft: #222c31;
+  --bad: #e07070;
+  --bad-soft: #3a1f1f;
+
+  --scrim: rgba(5, 10, 7, 0.68);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.4), 0 24px 64px rgba(0, 0, 0, 0.6);
+  --ring: 0 0 0 3px rgba(109, 181, 138, 0.3);
+
+  --panel: #0b110e;
+  --panel-ink: #e4eae2;
+  --panel-line: rgba(228, 234, 226, 0.14);
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* The handful of cross-cutting text utilities every feature area needs. */
+.serif {
+  font-family: var(--font-serif);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-variation-settings: 'wdth' 80;
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}

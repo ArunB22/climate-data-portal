@@ -1,0 +1,75 @@
+/*
+ * Shared form-control primitives — the second common stylesheet.
+ * Kept separate from tokens.css (pure variables) because this is actual
+ * visual styling, just styling that many different feature components need
+ * to apply to native <input>/<select> elements they project into <app-field>.
+ * (A native form control can't be re-skinned via a wrapper component's own
+ * scoped CSS the way <app-button> can, since Angular content projection keeps
+ * projected content's styles scoped to where it came from — so this one
+ * exception lives globally by necessity, not by default.)
+ */
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.field label span {
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 6px;
+}
+
+.field .hint {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.field .err {
+  font-size: 12.5px;
+  color: var(--bad);
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.input::placeholder {
+  color: var(--muted);
+}
+
+.input:focus-visible,
+.input:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: var(--ring);
+}
+
+.input.error {
+  border-color: var(--bad);
+}
+
+select.input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%236B7A70' stroke-width='1.8'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
