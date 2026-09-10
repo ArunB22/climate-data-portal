@@ -1,0 +1,80 @@
+.hero {
+  padding: 56px 40px 48px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--surface) 0%, var(--paper) 100%);
+}
+.hero h1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.06;
+  letter-spacing: -0.005em;
+  margin: 14px 0 16px;
+  max-width: 22ch;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brand);
+}
+.hero p {
+  font-size: 16.5px;
+  color: var(--ink-2);
+  max-width: 52ch;
+}
+.counts {
+  display: flex;
+  gap: 28px;
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.counts div {
+  display: grid;
+  gap: 2px;
+}
+.counts b {
+  font-weight: 500;
+  font-size: 22px;
+}
+.counts span {
+  font-size: 12px;
+  color: var(--muted);
+}
+.app-main {
+  padding: 36px 40px 48px;
+}
+.sec-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+.sec-head h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 24px;
+}
+.empty {
+  color: var(--muted);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: 20px;
+}
+@media (max-width: 640px) {
+  .hero {
+    padding: 32px 20px 28px;
+  }
+  .hero h1 {
+    font-size: 30px;
+  }
+  .app-main {
+    padding: 24px 20px 32px;
+  }
+  .counts {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}

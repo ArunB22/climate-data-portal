@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+.heatmap {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  height: 480px;
+  aspect-ratio: 600 / 520;
+}
+.state-label {
+  font-size: 8px;
+  fill: var(--ink);
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+  user-select: none;
+}
