@@ -1,0 +1,198 @@
+.app-main {
+  padding: 36px 40px 48px;
+}
+.page-head {
+  margin-bottom: 24px;
+}
+.page-head h1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 28px;
+  margin-top: 8px;
+}
+.page-head .sub {
+  color: var(--ink-2);
+  margin-top: 8px;
+}
+.form-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 32px;
+  align-items: start;
+}
+.form-card {
+  padding: 28px 32px;
+}
+.fieldset {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.fieldset .lg {
+  font-size: 15px;
+  font-weight: 600;
+}
+.fieldset .lg span {
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 13px;
+  margin-left: 8px;
+}
+.radio-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.sub-opt {
+  display: grid;
+  gap: 8px;
+  padding: 14px 16px;
+  background: var(--surface-2);
+  border-left: 2px solid var(--brand);
+  margin-top: 8px;
+}
+.sub-opt .lab {
+  font-size: 13px;
+  font-weight: 600;
+}
+.seg {
+  display: inline-grid;
+  grid-auto-flow: column;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+  width: fit-content;
+}
+.seg div {
+  padding: 8px 16px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+  background: var(--surface);
+  border-right: 1px solid var(--line-strong);
+  cursor: pointer;
+}
+.seg div:last-child {
+  border-right: 0;
+}
+.seg div.on {
+  background: var(--ink);
+  color: var(--paper);
+}
+.drop {
+  border: 1.5px dashed var(--line-strong);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  background: var(--surface-2);
+}
+.drop svg {
+  width: 28px;
+  height: 28px;
+  color: var(--muted);
+}
+.drop b {
+  font-size: 14.5px;
+}
+.drop span {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.drop .chosen {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-2);
+}
+.drop .chosen i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ok);
+}
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  margin-top: 4px;
+}
+.hint-text {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.error {
+  color: var(--bad);
+  font-size: 0.85rem;
+  margin: 12px 0 0;
+}
+.field-errors {
+  color: var(--bad);
+  font-size: 0.82rem;
+  margin: 12px 0 0;
+  padding-left: 1.1rem;
+}
+.side {
+  display: grid;
+  gap: 16px;
+}
+.pad {
+  padding: 18px 20px;
+}
+.side h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.side p {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.csvspec {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  background: var(--surface-2);
+  padding: 12px 14px;
+  margin-top: 12px;
+  border-left: 2px solid var(--line-strong);
+  color: var(--ink-2);
+  white-space: pre;
+  overflow-x: auto;
+}
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: grid;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+@media (max-width: 900px) {
+  .form-layout {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .app-main {
+    padding: 24px 20px 32px;
+  }
+  .form-card {
+    padding: 20px;
+  }
+  .radio-cards {
+    grid-template-columns: 1fr;
+  }
+}
