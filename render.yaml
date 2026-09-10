@@ -1,0 +1,50 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+#
+# Two manual steps remain even with this blueprint (Render doesn't let a
+# blueprint auto-connect a GitHub repo or hand out a JDBC-formatted URL):
+#   1. In the Render dashboard: New -> Blueprint -> connect this GitHub repo.
+#      Render reads this file and creates the database + web service below.
+#   2. Once "vasudha-db" exists, open it in the dashboard and copy its
+#      connection info (host, port, database name, password). Render's own
+#      "Internal/External Database URL" is postgres://user:pass@host:port/db —
+#      Spring's DB_URL needs the jdbc: form instead:
+#        jdbc:postgresql://<host>:<port>/<database>
+#      Paste that into the vasudha-backend service's DB_URL env var (marked
+#      sync: false below, i.e. Render will prompt for it rather than guess).
+#      DB_USERNAME / DB_PASSWORD are wired automatically from the database.
+
+databases:
+  - name: vasudha-db
+    plan: free
+    databaseName: climate_portal
+    user: vasudha
+
+services:
+  - type: web
+    name: vasudha-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    healthCheckPath: /api/public/datasets
+    envVars:
+      - key: DB_URL
+        sync: false # paste the jdbc:postgresql://... URL, see note above
+      - key: DB_USERNAME
+        fromDatabase:
+          name: vasudha-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: vasudha-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRATION_MINUTES
+        value: "120"
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false # set to the deployed frontend's URL (Vercel/Netlify), no trailing slash
+      - key: SUPER_ADMIN_EMAIL
+        value: superadmin@vasudhaindia.org
+      - key: SUPER_ADMIN_PASSWORD
+        sync: false # set your own; don't ship the assessment's published default to a public URL
