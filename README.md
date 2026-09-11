@@ -68,13 +68,9 @@ frontend/src/app/
 
 ## Setup
 
-Needs: Java 21, Node 20+, Postgres 14+ (or Docker).
+Needs: Java 21, Node 20+, Postgres 14+ (or Docker) — see Database setup below.
 
 ```bash
-docker run -d --name vasudha-postgres -p 5432:5432 \
-  -e POSTGRES_DB=climate_portal -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres \
-  postgres:16-alpine
-
 cd backend
 cp .env.example .env   # set a real JWT_SECRET
 export $(grep -v '^#' .env | xargs)
@@ -88,6 +84,44 @@ npm start   # :4200
 Default login: `superadmin@vasudhaindia.org` / `Admin@123` (override via
 `SUPER_ADMIN_EMAIL`/`SUPER_ADMIN_PASSWORD`). **Change this before deploying
 publicly** — it's the assessment's documented default, so it's not a secret.
+
+## Database setup
+
+PostgreSQL, no manual schema work needed — Flyway runs the one migration
+(`backend/src/main/resources/db/migration/V1__init_schema.sql`) automatically
+on backend startup and creates:
+
+- `users` — `id`, `email` (unique), `password_hash` (BCrypt), `role`
+  (`SUPER_ADMIN` / `ADMIN`), `enabled`, `created_by`, `created_at`
+- `datasets` — `id`, `admin_id` (FK → `users`), `domain`
+  (`CLIMATE`/`ENERGY`/`POWER`), `chart_type`
+  (`LATLONG_MAP`/`STATE_HEATMAP`/`LINE`/`BAR`/`AREA`), `title`, `status`
+  (`PENDING`/`APPROVED`/`REJECTED`), `payload_json` (the CSV's columns/rows
+  as generic JSON — one table for every chart type), `published_order`
+  (set on approval, drives landing-page ordering), `created_at`, `decided_at`
+
+Local DB, via Docker:
+
+```bash
+docker run -d --name vasudha-postgres -p 5432:5432 \
+  -e POSTGRES_DB=climate_portal -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres \
+  postgres:16-alpine
+```
+
+Point the backend at it with `DB_URL`/`DB_USERNAME`/`DB_PASSWORD` (see Env
+vars below; the `.env.example` default already matches the command above).
+On deploy, Render's free Postgres plays the same role — `render.yaml`
+provisions it and wires `DB_USERNAME`/`DB_PASSWORD` automatically; only
+`DB_URL` needs pasting in by hand (Render's `postgres://` URL needs the
+`jdbc:postgresql://` prefix Spring expects).
+
+The Super Admin account isn't part of the schema — `SuperAdminSeeder` (a
+`CommandLineRunner`) inserts it on boot, but only if no `SUPER_ADMIN` row
+exists yet, using whatever `SUPER_ADMIN_EMAIL`/`SUPER_ADMIN_PASSWORD` are set
+to at that first boot. It won't re-seed or update the account on later
+restarts — to change the Super Admin's password after it's already been
+seeded once, update the `users` row directly (or delete it and restart so it
+reseeds from the current env vars).
 
 ## Env vars (backend)
 
