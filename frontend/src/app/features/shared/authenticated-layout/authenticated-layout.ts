@@ -38,7 +38,7 @@ function initialsOf(email: string): string {
           <a routerLink="/superadmin/datasets" routerLinkActive="active">Datasets</a>
           <a routerLink="/superadmin/admins" routerLinkActive="active">Admins</a>
         }
-        <a routerLink="/">Public atlas ↗</a>
+        <a href="/" target="_blank" rel="noopener">Public atlas ↗</a>
       </div>
       <span class="spacer"></span>
       <div class="who">
